@@ -1,0 +1,52 @@
+##### Bamboo Application Server #####
+    #Define bamboo service and bamboo volume data persist data in a permanently
+bamboodata:
+    image: busybox
+    volumes:
+        - /var/lib/bamboo
+bamboo:
+    build: .
+    links:
+        - postgres:postgres
+    volumes_from:
+        - bamboodata
+    ports:
+        - "8085:8085"
+        - "54663:54663"
+
+##### Artifactory Application Server #####
+artifactorydata:
+    image: busybox
+    volumes:
+        - /artifactory/data
+        - /artifactory/logs
+        - /artifactory/backup
+
+#Define artifactory image and link it to postgres. //TODO Create data volume to manage persistent data
+artifactory:
+    build: artifactory
+    links:
+        - postgres:postgres
+    volumes_from:
+        - artifactorydata
+    ports:
+        - "32770:32770"
+
+##### Postgres Database Server #####
+#Define postgres database and database volume data persist data in a permanently
+postgresdata:
+    image: busybox
+    volumes:
+        - /var/lib/postgresql/data
+postgres:
+  build: postgres
+  ##image: postgres:latest
+  ports:
+    - "5432:5432"
+  volumes_from:
+  - postgresdata
+  environment:
+    POSTGRES_USER: admin
+    POSTGRES_PASSWORD: admin
+
+
