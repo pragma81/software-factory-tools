@@ -1,11 +1,26 @@
 ##### Bamboo Application Server #####
     #Define bamboo service and bamboo volume data persist data in a permanently
+bitbucket-serverdata:
+    image: busybox
+    volumes:
+        - /var/atlassian/application-data/bitbucket
+bitbucket-server:
+    build: bitbucket
+    links:
+        - postgres:postgres
+    volumes_from:
+        - bitbucket-serverdata
+    ports:
+        - "7990:7990"
+        - "7999:7999"
+##### Bamboo Application Server #####
+    #Define bamboo service and bamboo volume data persist data in a permanently
 bamboodata:
     image: busybox
     volumes:
         - /var/lib/bamboo
 bamboo:
-    build: .
+    build: bamboo
     links:
         - postgres:postgres
     volumes_from:
