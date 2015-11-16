@@ -1,10 +1,12 @@
 ##### Bamboo Application Server #####
     #Define bamboo service and bamboo volume data persist data in a permanently
 bitbucket-serverdata:
+    container_name: bitbucket-serverdata
     image: busybox
     volumes:
         - /var/atlassian/application-data/bitbucket
 bitbucket-server:
+    container_name: bitbucket-server
     build: bitbucket
     links:
         - postgres:postgres
@@ -16,10 +18,12 @@ bitbucket-server:
 ##### Bamboo Application Server #####
     #Define bamboo service and bamboo volume data persist data in a permanently
 bamboodata:
+    container_name: bamboodata
     image: busybox
     volumes:
         - /var/lib/bamboo
 bamboo:
+    container_name: bamboo
     build: bamboo
     links:
         - postgres:postgres
@@ -31,6 +35,7 @@ bamboo:
 
 ##### Artifactory Application Server #####
 artifactorydata:
+    container_name: artifactorydata
     image: busybox
     volumes:
         - /artifactory/data
@@ -39,6 +44,7 @@ artifactorydata:
 
 #Define artifactory image and link it to postgres. //TODO Create data volume to manage persistent data
 artifactory:
+    container_name: artifactory
     build: artifactory
     links:
         - postgres:postgres
@@ -50,10 +56,12 @@ artifactory:
 ##### Postgres Database Server #####
 #Define postgres database and database volume data persist data in a permanently
 postgresdata:
+    container_name: postgresdata
     image: busybox
     volumes:
         - /var/lib/postgresql/data
 postgres:
+  container_name: postgres
   build: postgres
   ##image: postgres:latest
   ports:
