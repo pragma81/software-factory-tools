@@ -1,11 +1,6 @@
-FROM mattgruter/artifactory:latest
+FROM jfrog-docker-reg2.bintray.io/jfrog/artifactory-pro
 
-MAINTAINER Davide Antelmo <devianter81@gmail.com>
-
-### Configure postgres connection properties. Connection url is hardcode in property file. I should change this using env variables.
-ADD storage.properties ${ARTIFACTORY_HOME}/etc/storage.properties
+MAINTAINER Fabio Sforza <fabio.sforza@relatech.com>
 
 ### Add postgres jdbc driver
-RUN wget --progress=dot:mega -P /tmp https://jdbc.postgresql.org/download/postgresql-9.4-1204.jdbc41.jar \
-
-&& mv /tmp/postgresql-9.4-1204.jdbc41.jar ${CATALINA_HOME}/lib
+RUN curl -o /var/opt/jfrog/artifactory/tomcat/lib/postgresql-9.4-1206-jdbc41.jar https://jdbc.postgresql.org/download/postgresql-9.4-1206-jdbc41.jar
