@@ -1,75 +1,70 @@
-##### Bamboo Application Server #####
-    #Define bamboo service and bamboo volume data persist data in a permanently
-bitbucket-serverdata:
-    container_name: bitbucket-serverdata
-    image: busybox
-    volumes:
-        - /var/atlassian/application-data/bitbucket
-bitbucket-server:
-    container_name: bitbucket-server
-    build: bitbucket
-    links:
-        - postgres:postgres
-    volumes_from:
-        - bitbucket-serverdata
-    ports:
-        - "7990:7990"
-        - "7999:7999"
-##### Bamboo Application Server #####
-    #Define bamboo service and bamboo volume data persist data in a permanently
-bamboodata:
-    container_name: bamboodata
-    image: busybox
-    volumes:
-        - /var/lib/bamboo
-bamboo:
-    container_name: bamboo
-    build: bamboo
-    links:
-        - postgres:postgres
-    volumes_from:
-        - bamboodata
-    ports:
-        - "8085:8085"
-        - "54663:54663"
-
-##### Artifactory Application Server #####
-artifactorydata:
-    container_name: artifactorydata
-    image: busybox
-    volumes:
-        - /artifactory/data
-        - /artifactory/logs
-        - /artifactory/backup
-
-#Define artifactory image and link it to postgres. //TODO Create data volume to manage persistent data
-artifactory:
-    container_name: artifactory
-    build: artifactory
-    links:
-        - postgres:postgres
-    volumes_from:
-        - artifactorydata
-    ports:
-        - "32770:32770"
-
 ##### Postgres Database Server #####
 #Define postgres database and database volume data persist data in a permanently
-postgresdata:
-    container_name: postgresdata
-    image: busybox
-    volumes:
-        - /var/lib/postgresql/data
+postgres-data:
+  container_name: postgresdata
+  image: busybox
+  volumes:
+   - /var/lib/postgresql/data
+
 postgres:
-  container_name: postgres
+  container_name: software-factory-tools-postgres
   build: postgres
-  ##image: postgres:latest
-  ports:
-    - "5432:5432"
   volumes_from:
-  - postgresdata
+   - postgres-data
+  ports:
+   - "5432:5432"
   environment:
-    POSTGRES_USER: admin
-    POSTGRES_PASSWORD: admin
+   - POSTGRES_USER=admin
+   - POSTGRES_ADMIN=admin
+   
+##### Artifactory Application Server #####
+artifactory-data:
+  container_name: artifactorydata
+  build: artifactorydata
+   
+artifactory:
+  container_name: software-factory-tools-artifactory
+  build: artifactory
+  volumes_from:
+   - artifactory-data
+  links:
+   - postgres:postgres
+  ports:
+   - "8081:8081"
 
+##### Bitbucket Application Server #####
+    #Define bitbucket service and bitbucket volume data persist data in a permanently 
+bitbucket-data:
+  container_name: bitbucketdata
+  image: busybox
+  volumes:
+   - /var/atlassian/application-data/bitbucket
 
+bitbucket:
+  container_name: software-factory-tools-bitbucket
+  build: bitbucket
+  volumes_from:
+   - bitbucket-data
+  links:
+   - postgres:postgres
+  ports:
+   - "7990:7990"
+   - "7999:7999"
+
+##### Bamboo Application Server #####
+    #Define bamboo service and bamboo volume data persist data in a permanently   
+bamboo-data:
+  container_name: bamboodata
+  image: busybox
+  volumes:
+   - /home/bamboo
+
+bamboo:
+  container_name: software-factory-tools-bamboo
+  build: bamboo
+  volumes_from:
+   - bamboo-data
+  links:
+   - postgres:postgres
+  ports:
+   - "8085:8085"
