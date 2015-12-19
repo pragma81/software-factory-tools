@@ -1,7 +1,7 @@
 
 FROM hwuethrich/bamboo-server
 
-MAINTAINER Fabio Sforza <fabio.sforza@relatech.com>
+MAINTAINER Davide Antelmo <davide.antelmo@gmail.com>
 
 ENV MAVEN_VERSION=3.3.9 \
     MAVEN_INSTALL=/usr/lib/maven \
