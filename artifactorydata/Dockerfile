@@ -1,6 +1,6 @@
 FROM busybox
 
-MAINTAINER Fabio Sforza <fabio.sforza@relatech.com>
+MAINTAINER Davide Antelmo <davive.antelmo@gmail.com>
 
 ENV ARTIFACTORY_HOME /var/opt/jfrog/artifactory 
 
