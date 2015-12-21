@@ -7,7 +7,7 @@ postgres-data:
    - /var/lib/postgresql/data
 
 postgres:
-  container_name: software-factory-tools-postgres
+  container_name: postgres
   build: postgres
   volumes_from:
    - postgres-data
@@ -23,7 +23,7 @@ artifactory-data:
   build: artifactorydata
    
 artifactory:
-  container_name: software-factory-tools-artifactory
+  container_name: artifactory
   build: artifactory
   volumes_from:
    - artifactory-data
@@ -41,7 +41,7 @@ bitbucket-data:
    - /var/atlassian/application-data/bitbucket
 
 bitbucket:
-  container_name: software-factory-tools-bitbucket
+  container_name: bitbucket
   build: bitbucket
   volumes_from:
    - bitbucket-data
@@ -60,7 +60,7 @@ bamboo-data:
    - /home/bamboo
 
 bamboo:
-  container_name: software-factory-tools-bamboo
+  container_name: bamboo
   build: bamboo
   volumes_from:
    - bamboo-data
