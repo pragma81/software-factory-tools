@@ -16,9 +16,11 @@ You can use the provided postgres database as repository for services. A postgre
 
 In order to run all the services as docker containers you must in order
  * Start docker data volume containers provided for every service using the following command:
-    ```docker-compose -f tools-data.yml```
+ 
+ ```docker-compose -f tools-data.yml```
  * Start docker containers attaching them to custom network (in order to enable comunication between them):
-    ```docker-compose --x-networking -f tools.yml -p sf_tools up -d```
+ 
+ ```docker-compose --x-networking -f tools.yml -p sf_tools up -d```
     
     
 ##TODO
