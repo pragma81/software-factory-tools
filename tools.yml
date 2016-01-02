@@ -1,0 +1,56 @@
+##### Postgres Database Server #####
+
+postgres:
+  container_name: postgres
+  build: postgres
+  volumes_from:
+   - postgresdata
+  ports:
+   - "5432:5432"
+  environment:
+   - POSTGRES_USER=admin
+   - POSTGRES_ADMIN=admin
+
+##### Artifactory Application Server #####
+
+artifactory:
+  container_name: artifactory
+  build: artifactory
+  volumes_from:
+   - artifactorydata
+  ports:
+   - "8081:8081"
+
+##### Bitbucket Application Server #####
+
+bitbucket:
+  container_name: bitbucket
+  build: bitbucket
+  volumes_from:
+   - bitbucketdata
+  ports:
+   - "7990:7990"
+   - "7999:7999"
+
+##### Bamboo Application Server #####
+
+bamboo:
+  container_name: bamboo
+  build: bamboo
+  volumes_from:
+   - bamboodata
+  ports:
+   - "8085:8085"
+
+##### Sonarqube Server #####
+
+sonarqube:
+    container_name: sonarqube
+    image: sonarqube:5.2
+    volumes_from:
+        - sonarqubedata
+    ports:
+        - "9000:9000"
+    environment:
+        - SONARQUBE_JDBC_URL=jdbc:postgresql://postgres:5432/sonar
+
