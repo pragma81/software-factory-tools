@@ -1,0 +1,33 @@
+#Define postgres data volume container
+postgres-data:
+  container_name: postgresdata
+  image: busybox
+  volumes:
+   - /var/lib/postgresql/data
+
+#Define artifactory data volume container
+artifactory-data:
+  container_name: artifactorydata
+  build: artifactorydata
+
+#Define bitbucket data volume container
+bitbucket-data:
+  container_name: bitbucketdata
+  image: busybox
+  volumes:
+   - /var/atlassian/application-data/bitbucket
+
+#Define bamboo data volume container
+bamboo-data:
+  container_name: bamboodata
+  image: busybox
+  volumes:
+   - /home/bamboo
+
+#Define sonarqube data volume container
+sonarqube-data:
+    container_name: sonarqubedata
+    image: busybox
+    volumes:
+    - /opt/sonarqube/data
+    - /opt/sonarqube/extensions
