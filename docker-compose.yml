@@ -28,7 +28,7 @@ artifactory:
   volumes_from:
    - artifactory-data
   links:
-   - postgres:postgres
+   - postgres
   ports:
    - "8081:8081"
 
@@ -46,7 +46,7 @@ bitbucket:
   volumes_from:
    - bitbucket-data
   links:
-   - postgres:postgres
+   - postgres
   ports:
    - "7990:7990"
    - "7999:7999"
@@ -65,7 +65,7 @@ bamboo:
   volumes_from:
    - bamboo-data
   links:
-   - postgres:postgres
+   - postgres
   ports:
    - "8085:8085"
 ##### Sonarqube Server #####
@@ -82,10 +82,9 @@ sonarqube:
     volumes_from:
         - sonarqube-data
     links:
-        - postgres:postgres
+        - postgres
     ports:
         - "9000:9000"
     environment:
         - SONARQUBE_JDBC_URL=jdbc:postgresql://postgres:5432/sonar
-    
     
