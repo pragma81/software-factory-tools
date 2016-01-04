@@ -31,3 +31,10 @@ sonarqube-data:
     volumes:
     - /opt/sonarqube/data
     - /opt/sonarqube/extensions
+
+#Define jira data volume container
+jira-data:
+  container_name: jiradata
+  build: jiradata
+  volumes:
+   - /var/atlassian/jira
