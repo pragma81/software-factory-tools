@@ -8,6 +8,7 @@ The current list of tools are:
 * Artifactory Pro 4.3.3
 * SonarQube 5.2
 * Postgres 9.4
+* Jira 7.0.5
 
 You can use the provided postgres database as repository for services. A postgres schema for every service is already created  with the following simple convention:
 * **schema name**: 'tool name'
@@ -17,11 +18,7 @@ You can use the provided postgres database as repository for services. A postgre
 In order to run all the services as docker containers you must in order
  * Start docker data volume containers provided for every service using the following command:
  
- ```docker-compose -f tools-data.yml```
+ ```docker-compose -f tools-data.yml up -d```
  * Start docker containers attaching them to custom network (in order to enable comunication between them):
  
  ```docker-compose --x-networking -f tools.yml -p sf_tools up -d```
-    
-    
-##TODO
- Add Atlassian Jira 7
