@@ -16,7 +16,7 @@ if [[ $TEST == "1" ]]; then
     exit 0
 else
 psql <<- EOSQL
-   CREATE ROLE artifactory WITH LOGIN ENCRYPTED PASSWORD 'password' CREATEDB;
+   CREATE ROLE artifactory WITH LOGIN ENCRYPTED PASSWORD 'artifactory' CREATEDB;
 EOSQL
 
 psql <<- EOSQL

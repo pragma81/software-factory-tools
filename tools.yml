@@ -54,3 +54,12 @@ sonarqube:
     environment:
         - SONARQUBE_JDBC_URL=jdbc:postgresql://postgres:5432/sonar
 
+##### Jira Server #####
+   
+jira:
+  container_name: jira
+  image: cptactionhank/atlassian-jira-software
+  volumes_from:
+   - jiradata
+  ports:
+   - "8080:8080"

@@ -13,3 +13,5 @@ ADD create-bitbucket-database.sh /docker-entrypoint-initdb.d/create-bitbucket-da
 RUN chmod 755 /docker-entrypoint-initdb.d/create-bitbucket-database.sh
 ADD create-sonarqube-database.sh /docker-entrypoint-initdb.d/create-sonarqube-database.sh
 RUN chmod 755 /docker-entrypoint-initdb.d/create-sonarqube-database.sh
+ADD create-jira-database.sh /docker-entrypoint-initdb.d/create-jira-database.sh
+RUN chmod 755 /docker-entrypoint-initdb.d/create-jira-database.sh

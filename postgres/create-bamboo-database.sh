@@ -15,7 +15,7 @@ if [[ $TEST == "1" ]]; then
     exit 0
 else
 psql <<- EOSQL
-   CREATE ROLE bamboo WITH LOGIN ENCRYPTED PASSWORD 'password' CREATEDB;
+   CREATE ROLE bamboo WITH LOGIN ENCRYPTED PASSWORD 'bamboo' CREATEDB;
 EOSQL
 
 psql <<- EOSQL
