@@ -1,3 +1,0 @@
-docker-machine -D create --driver amazonec2 --amazonec2-access-key AKIAJTMQDNPRW7I5YHSA --amazonec2-secret-key 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 --amazonec2-vpc-id vpc-d1fcb8b4 --amazonec2-subnet-id subnet-a390b9c6 --amazonec2-region eu-west-1 --amazonec2-zone b --amazonec2-security-group sg-ccca78a8 --amazonec2-instance-type t2.micro --amazonec2-ami ami-47a23a30  --swarm --swarm-master --swarm-discovery=token://79cba4e5d21f89af0674a7dc6be82710 swarm-masterr
-
---amazonec2-region eu-west-1b
